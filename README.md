@@ -1,1 +1,1 @@
-# OTEL_C2
+# Ghost_Span_C2
