@@ -1,0 +1,7 @@
+fastapi>=0.100.0
+uvicorn>=0.23.0
+protobuf>=4.25.0
+opentelemetry-proto>=1.22.0
+grpcio>=1.60.0
+grpcio-tools>=1.60.0
+cryptography>=41.0.0

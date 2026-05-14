@@ -1,0 +1,289 @@
+/**
+ * GitGhost Enterprise - TitleBar Styles
+ * Clean sharp design
+ */
+
+.titlebar {
+  height: 40px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  -webkit-app-region: drag;
+  user-select: none;
+  z-index: 1000;
+}
+
+.titlebar-drag-region {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+}
+
+.titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+}
+
+.app-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.app-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.app-version {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.titlebar-center {
+  flex: 1;
+}
+
+.titlebar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+.connection-status .status-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.connection-status.connected .status-dot {
+  background: var(--accent-green);
+}
+
+.connection-status.disconnected .status-dot {
+  background: var(--accent-red);
+}
+
+.connection-status span {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.connection-status.connected span {
+  color: var(--accent-green);
+}
+
+.connection-status.disconnected span {
+  color: var(--accent-red);
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.refresh-btn:hover {
+  border-color: var(--ghost-green-border);
+  color: var(--ghost-green);
+  box-shadow: 0 0 10px var(--ghost-green-glow);
+}
+
+.refresh-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.logout-btn:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  box-shadow: 0 0 10px rgba(248, 81, 73, 0.3);
+}
+
+.logout-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.titlebar-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.titlebar-button:hover {
+  background: var(--ghost-green-bg);
+  color: var(--ghost-green);
+  box-shadow: 0 0 15px var(--ghost-green-glow);
+}
+
+.titlebar-button.close-button:hover {
+  background: var(--accent-red);
+  color: white;
+}
+
+.titlebar-button svg {
+  pointer-events: none;
+}
+
+/* Modal Dialog Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal-dialog {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body p {
+  margin: 0 0 12px 0;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.modal-hint {
+  color: var(--text-secondary) !important;
+  font-size: 12px !important;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+}
+
+.modal-actions .btn {
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid var(--border-color);
+}
+
+.modal-actions .btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.modal-actions .btn-secondary:hover {
+  border-color: var(--ghost-green-border);
+  color: var(--ghost-green);
+  box-shadow: 0 0 10px var(--ghost-green-glow);
+}
+
+.modal-actions .btn-danger {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  color: white;
+}
+
+.modal-actions .btn-danger:hover {
+  background: #ff5555;
+  box-shadow: 0 0 15px rgba(248, 81, 73, 0.5);
+}
