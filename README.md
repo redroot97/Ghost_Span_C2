@@ -2,7 +2,7 @@
 
 A research C2 framework that disguises command-and-control traffic as OpenTelemetry telemetry.
 
-Implants and the operator server speak the same protocols enterprise observability stacks use every day — OTLP over gRPC (`:4317`) and OTLP over HTTP (`:4318`) — with C2 payloads tucked inside span attributes that look like normal application traces. The operator UI is an Electron desktop app; the server is a single FastAPI process; implants are statically-linked Go binaries cross-compiled from an embedded toolchain.
+Implants and the operator server speak the same protocols enterprise observability stacks use every day - OTLP over gRPC (`:4317`) and OTLP over HTTP (`:4318`) - with C2 payloads tucked inside span attributes that look like normal application traces. The operator UI is an Electron desktop app; the server is a single FastAPI process; implants are statically-linked Go binaries cross-compiled from an embedded toolchain.
 
 > **Authorized use only.** This is for security research, red-team engagements with written authorization, internal lab exercises, and CTFs. Don't run it against anything you don't own or aren't paid to test.
 
@@ -10,14 +10,14 @@ Implants and the operator server speak the same protocols enterprise observabili
 
 ## How it looks on the wire
 
-- Agents POST to `/v1/traces` with **valid** OTLP protobuf payloads — no agent ID in the URL, no exotic headers.
-- C2 data is hidden inside span attributes whose `(data, id)` pairs **rotate** across a pool — `db.statement`/`db.connection_string`, `http.request.body`/`http.request.header.x-request-id`, `graphql.document`/`graphql.operation.name`, etc. A passive collector can't fingerprint a single attribute pair.
+- Agents POST to `/v1/traces` with **valid** OTLP protobuf payloads - no agent ID in the URL, no exotic headers.
+- C2 data is hidden inside span attributes whose `(data, id)` pairs **rotate** across a pool - `db.statement`/`db.connection_string`, `http.request.body`/`http.request.header.x-request-id`, `graphql.document`/`graphql.operation.name`, etc. A passive collector can't fingerprint a single attribute pair.
 - Payloads are XOR-encrypted with an HMAC-SHA256 key derived per-agent from a shared master secret.
 - gRPC + protobuf is the primary path: binary protocol, HTTP/2 multiplexing, and the default transport real OTel SDKs use.
 
 ## Anti-sandbox triage gate
 
-New beacons land in a **pending** queue. An agent has to beacon twice and survive at least 30 seconds before it's promoted to a visible endpoint. Drive-by detonations in a one-minute sandbox never show up in the operator UI — they sit in `/api/endpoints/suspicious` for review.
+New beacons land in a **pending** queue. An agent has to beacon twice and survive at least 30 seconds before it's promoted to a visible endpoint. Drive-by detonations in a one-minute sandbox never show up in the operator UI - they sit in `/api/endpoints/suspicious` for review.
 
 ---
 
@@ -42,13 +42,13 @@ New beacons land in a **pending** queue. An agent has to beacon twice and surviv
                                                             └────────────────────┘
 ```
 
-- **`server/`** — Python 3, FastAPI + uvicorn + grpcio. SQLite for operators, in-memory for endpoints/tasks/results. TLS optional.
-- **`client/`** — Electron + React desktop app. The main process embeds a Go toolchain + llvm-mingw and cross-compiles implants on demand.
-- **`client/src/main/templates-go/`** — Implant source for Windows EXE / macOS / Linux ELF.
-- **`client/src/main/templates-dll/`** — Implant source for Windows DLL (CGO).
-- **`client/src/main/templates-svc/`** — Implant source for Windows Service (SCM).
+- **`server/`** - Python 3, FastAPI + uvicorn + grpcio. SQLite for operators, in-memory for endpoints/tasks/results. TLS optional.
+- **`client/`** - Electron + React desktop app. The main process embeds a Go toolchain + llvm-mingw and cross-compiles implants on demand.
+- **`client/src/main/templates-go/`** - Implant source for Windows EXE / macOS / Linux ELF.
+- **`client/src/main/templates-dll/`** - Implant source for Windows DLL (CGO).
+- **`client/src/main/templates-svc/`** - Implant source for Windows Service (SCM).
 
-Build targets: `{windows, linux, darwin} × {amd64, arm64} × {exe | dll | svc | bin}` — 10 prebuilt templates after `npm run precompile`.
+Build targets: `{windows, linux, darwin} × {amd64, arm64} × {exe | dll | svc | bin}` - 10 prebuilt templates after `npm run precompile`.
 
 ---
 
@@ -73,7 +73,7 @@ Ports:
 | 4317  | gRPC (OTLP)         | Primary implant channel          |
 | 4318  | HTTP (OTLP + REST)  | Fallback implants + operator API |
 
-Default operators (change them — they live in `server/ghostspan.db`):
+Default operators (change them - they live in `server/ghostspan.db`):
 
 | Username    | Password   | Role     |
 | ----------- | ---------- | -------- |
@@ -119,7 +119,7 @@ The app cross-compiles on the spot using the embedded Go toolchain. Output goes 
 ### Deploy and operate
 
 1. Copy the generated binary to the target
-2. Run it — it beacons immediately to `collector_endpoint/v1/traces`
+2. Run it - it beacons immediately to `collector_endpoint/v1/traces`
 3. After 2+ beacons over 30+ seconds, it appears in **Endpoints** tab
 4. Select an endpoint and use **Request Console** to send commands:
    - `cmd /c dir` (Windows)  
